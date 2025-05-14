@@ -1,0 +1,30 @@
+{
+  "name": "careerex-project-group2-freshmart",
+  "version": "1.0.0",
+  "description": "Supermarket E-Commerce Backend (FreshMart)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kutatachief/careerEx-Project-Group2-FreshMart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kutatachief/careerEx-Project-Group2-FreshMart/issues"
+  },
+  "homepage": "https://github.com/kutatachief/careerEx-Project-Group2-FreshMart#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.14.3",
+    "nodemon": "^3.1.10"
+  }
+}
