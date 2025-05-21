@@ -1,6 +1,16 @@
-// models/Category.js
+
+const { Timestamp } = require('bson');
 const mongoose = require('mongoose');
-const CategorySchema = new mongoose.Schema({
-  name: { type: String, required: true }
-});
-module.exports = mongoose.model('Category', CategorySchema);
+
+const categorySchema = new mongoose.Schema({
+  name: { 
+    type: String, 
+    required: true,
+    unique: true,
+    trim: true 
+ },
+}, {timestamps: true}
+);
+
+
+module.exports = mongoose.model('Category', categorySchema);

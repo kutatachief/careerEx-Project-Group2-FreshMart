@@ -1,27 +1,31 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const dotenv = require("dotenv")
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
-dotenv.config()
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const authRoutes = require('./routes/auth');
-const adminRoutes = require('./routes/admin');
+const app = express();
 
-const app = express()
-app.use(express.json())
+app.use(express.json());  //enables the backend to see whatever is passed 
 
-app.use('/api/auth', authRoutes);
-app.use('/api/admin', adminRoutes);
 
-const PORT = process.env.PORT || 8000
+//Routes
+const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
-mongoose.connect(process.env.MONGODB_URL)
-.then(()=>{
-    console.log("Mongodb connected...")
+app.use("/auth", authRoutes);
+app.use("/admin", productRoutes);     // for /admin/products
+app.use("/admin", categoryRoutes);    // for /admin/categories
 
-    app.listen(PORT, ()=>{
-        console.log(`Server started running on Port ${PORT}`)
-    }) 
-})
 
+
+//connect mongoose to your mongoDB_URL
+const PORT = process.env.PORT || 5000
+
+//connection
+mongoose.connect(process.env.MONGODB_URL).then(() => {
+  console.log("mongoDB connected...");
+  app.listen(PORT, () => {
+    console.log(`server started running on port ${PORT}`); 
+  });
+});
