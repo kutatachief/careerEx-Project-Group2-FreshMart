@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+
+
 //Checks for valid token
 exports.authMiddleware = (req, res, next) => {
     
@@ -22,6 +24,8 @@ exports.authMiddleware = (req, res, next) => {
     }
 };
 
+
+
 //Check if user role is Admin
 exports.isAdmin = (req, res, next) => {
     if (req.user.role !== "admin") {
@@ -29,5 +33,9 @@ exports.isAdmin = (req, res, next) => {
     }
     next();
 };
+
+
+
+
 
 //If both pass, createProduct runs
