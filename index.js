@@ -12,11 +12,16 @@ app.use(express.json());  //enables the backend to see whatever is passed
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+// const orderRoutes = require("./routes/orderRoutes");
+
 
 app.use("/auth", authRoutes);
 app.use("/admin", productRoutes);     // for /admin/products
 app.use("/admin", categoryRoutes);    // for /admin/categories
 
+//another style
+app.use("/", require("./routes/orderRoutes"));
+app.use("/", require("./routes/productRoutes"));
 
 
 //connect mongoose to your mongoDB_URL
@@ -29,3 +34,5 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
     console.log(`server started running on port ${PORT}`); 
   });
 });
+
+

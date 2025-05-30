@@ -18,15 +18,28 @@ exports.placeOrder = async (req, res) => {
         let total = 0;
         for (let item of items) {
             const product = await Product.findById(item.product);
+            
             if (!product) return res.status(404).json({message: `Product not found: ${item.product}`});
 
-            total += product.price * item.quantity;
-        }
+            if (product.stock < item.quantity) {
+                return res.status(400).json({message: `Not enough stock for ${product.name}`});
+            }
 
+            //Deduct stock
+            product.stock -= item.quantity;
+            
+            await product.save();
+
+            total += product.price * item.quantity;
+        };
+
+        
+        //create order
         const order = new Order({
             user: req.user.id,
             items,
-            total,
+            total: total,
+            status: "Processing"
         });
 
         await order.save();
@@ -35,7 +48,7 @@ exports.placeOrder = async (req, res) => {
     
     
     }catch(error){
-        res.status(500).json({message: "Server error"});
+        res.status(500).json({message: "Order failed", error});
     }
 };
 
@@ -49,9 +62,9 @@ exports.getUserOrders = async (req, res) => {
     try {
         const orders = await Orders.find({user: req.user.id}).populate("items.product", "name price");
         
-        res.status(200).json(orders);
+        res.status(200).json({message: "Here are your orders:", orders});
 
     }catch(error){
-        res.status(500).json({message: "Server error"});
+        res.status(500).json({message: "Failed to fetch orders", error});
     }
 };
