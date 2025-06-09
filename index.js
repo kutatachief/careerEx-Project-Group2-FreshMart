@@ -36,3 +36,10 @@ mongoose.connect(process.env.MONGODB_URL).then(() => {
 });
 
 
+//make the app show that it has deployed and active
+app.get("/", (req, res) => {
+  res.status(200).json({message: "Welcome To FreshMart Supermarket"})
+});
+
+
+

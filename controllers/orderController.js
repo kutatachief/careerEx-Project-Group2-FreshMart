@@ -39,7 +39,7 @@ exports.placeOrder = async (req, res) => {
             user: req.user.id,
             items,
             total: total,
-            status: "Processing"
+            status: "pending"
         });
 
         await order.save();
@@ -48,7 +48,7 @@ exports.placeOrder = async (req, res) => {
     
     
     }catch(error){
-        res.status(500).json({message: "Order failed", error});
+        res.status(500).json({message: "Order failed", error: error.message});
     }
 };
 
@@ -65,6 +65,6 @@ exports.getUserOrders = async (req, res) => {
         res.status(200).json({message: "Here are your orders:", orders});
 
     }catch(error){
-        res.status(500).json({message: "Failed to fetch orders", error});
+        res.status(500).json({message: "Failed to fetch orders", error: error.message});
     }
 };

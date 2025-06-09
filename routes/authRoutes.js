@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {register, login} = require("../controllers/authcontroller");
+const {register, login} = require("../controllers/authController");
 const { sendForgotPasswordEmail, validEmail } = require("../utils/sendForgotPass");
 
 

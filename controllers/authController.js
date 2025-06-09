@@ -121,7 +121,7 @@ exports.login = async (req, res) => {
   //forget password (send reset email)
 exports.forgotPassword = async (req, res) => {
   try {
-    const {email, userName} = req.body;
+    const {email} = req.body;
 
     const user = await Auth.findOne({email});
 
