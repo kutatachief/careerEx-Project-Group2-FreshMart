@@ -4,6 +4,7 @@ const Product = require("../models/Product");
 
 
 
+
 //place a new order
 exports.placeOrder = async (req, res) => {
     try {
