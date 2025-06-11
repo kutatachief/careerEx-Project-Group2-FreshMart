@@ -1,3 +1,8 @@
+
+URL for published documentation for end-points 
+https://documenter.getpostman.com/view/44479765/2sB2x5HYBr
+
+
 # Supermarket-FreshMart
 
 Supermarket E-Commerce Backend (FreshMart)
